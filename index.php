@@ -72,6 +72,14 @@ $conn = new mysqli($servername,$username,$password,"mydb");
 if ($conn->connect_error){
     die("connection failed: ".$conn->connect_error);
 };
+$sql = 'SELECT * FROM shop';
+$result = mysqli_query($conn,$sql);
+while($row = $result->fetch_assoc()) {
+   
+    echo "<div class='col-sm-4'><div class='panel panel-primary'><div class='panel-heading'> ". $row['name']. " " . $row['type']."</div><div class='panel-body'><img src='". $row['image']."'></div><div class='panel-footer'>Price = $ ". $row['price']. "</div></div></div>";
+    }
+
+$conn->close();
 ?>
 
 
