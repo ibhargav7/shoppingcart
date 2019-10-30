@@ -63,6 +63,17 @@
 
 <div class="container"> 
 <div class="row">
+<?php
+$servername = "localhost";
+$username = "****";
+$password = "******";
+
+$conn = new mysqli($servername,$username,$password,"mydb");
+if ($conn->connect_error){
+    die("connection failed: ".$conn->connect_error);
+};
+?>
+
 
 </div>
 </div><br><br>
