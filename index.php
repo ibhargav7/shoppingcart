@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Shooping cart</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -15,25 +16,22 @@
     }
     
     /* Remove the jumbotron's default bottom margin */ 
-     .jumbotron {
-      margin-bottom: 0;
+     .header {
+      margin-bottom:0;
+      background-color:#00e6e6;
+      text-align: left;
+       ;
+
     }
    
     /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
+  
   </style>
 </head>
 <body>
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Online Store</h1>      
-    <p>Mission, Vission & Values</p>
-  </div>
-</div>
+
+
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -63,36 +61,52 @@
 
 <div class="container"> 
 <div class="row">
+
+
+
 <?php
 $servername = "localhost";
-$username = "****";
-$password = "******";
+$username = "bhargav";
+$password = "iBhargav@1";
 
-$conn = new mysqli($servername,$username,$password,"mydb");
+$conn = new mysqli ($servername,$username,$password,"bhargav");
 if ($conn->connect_error){
     die("connection failed: ".$conn->connect_error);
 };
+function cart() {
+    $sql1  = "INSERT INTO `cart`(`id`, `name`, `price`) VALUES (". $result['id'].",'". $row['name']."',". $row['price'].")";
+    $result = mysqli_query($conn,$sql1);
+    if (mysqli_query($conn,$sql1)) {
+        echo "connected ";
+    }else{
+        echo "not";
+    };
+    
+};
+if (isset($_GET['sao'])) {
+    cart();
+  }
+
 $sql = 'SELECT * FROM shop';
 $result = mysqli_query($conn,$sql);
-while($row = $result->fetch_assoc()) {
+$products = mysqli_fetch_all($result,MYSQLI_ASSOC);
+foreach ($products as $product){
    
-    echo "<div class='col-sm-4'><div class='panel panel-primary'><div class='panel-heading'> ". $row['name']. " " . $row['type']."</div><div class='panel-body'><img src='". $row['image']."'></div><div class='panel-footer'>Price = $ ". $row['price']. "</div></div></div>";
-    }
+  echo "<div class='col-sm-4'><div class='panel panel-primary'>
+  <div class='panel-heading'> ". $product['name']. " " . $product['type']."</div>
+  <div class='panel-body'>
+  <img src='". $product['image']." width ='190px' height ='121px'></div>
+  <div class='panel-footer'>Price = ₹ ". $product['price']. "<button class='btn btn-primary' onclick=\"location.href='http://localhost/cart.php?id= ". $product['id']."'\" style='margin-left:40px'>Add to Cart</button>
+  </div></div></div>";
+  };
+
 
 $conn->close();
 ?>
-
-
 </div>
 </div><br><br>
 
-<footer class="container-fluid text-center">
-  <p>Online Store Copyright</p>  
-  <form class="form-inline">Get deals:
-    <input type="email" class="form-control" size="50" placeholder="Email Address">
-    <button type="button" class="btn btn-danger">Sign Up</button>
-  </form>
-</footer>
+
 
 </body>
 </html>

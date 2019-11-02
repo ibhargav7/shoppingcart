@@ -41,16 +41,28 @@
                         if ($conn->connect_error){
                             die("connection failed: ".$conn->connect_error);
                         };
+                        if (isset($_GET['id'])) {
+                            $id = mysqli_real_escape_string($conn,$_GET['id']);
 
-                        $sql = 'SELECT * FROM cart';
-                       
-                        $result = mysqli_query($conn,$sql);
+                          
+
+                            $sql = 'SELECT * FROM shop WHERE id = $id';
                         
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>". $row['id']."</td><td>". $row['name']."</td><td>". $row['price']."</td></tr>";
-                        }
+                            $result = mysqli_query($conn,$sql);
+                            
+                            $product=mysqli_fetch_assoc($result);
 
-                        $conn->close();
+                            $sql2 = "INSERT INTO `cart`(`id`, `name`, `price`) VALUES (".$product['id'].",".$product['name'].",".$product['price'].")";
+
+                            $result2 = mysqli_query($conn,$sql2);
+                            $cproducts = mysqli_fetch_all($result2,MYSQLI_ASSOC);
+                            foreach ($cproducts as $cproduct){
+                            
+                                echo "<tr><td>". $cproduct['id']."</td><td>". $cproduct['name']."</td><td>". $cproduct['price']."</td></tr>";
+                            }
+
+                            $conn->close();
+                        }
                         ?>
                     <tr>
                         <td><h4>Total Price<h4></td>
