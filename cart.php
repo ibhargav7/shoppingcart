@@ -1,7 +1,7 @@
 <!DOCTYPEhtml>
 <html lang="en">
     <head>
-    <title>Bootstrap Example</title>
+    <title>Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -45,17 +45,25 @@
                             $id = mysqli_real_escape_string($conn,$_GET['id']);
 
                           
-
-                            $sql = 'SELECT * FROM shop WHERE id = $id';
+                        
+                            $sql = "SELECT * FROM shop WHERE id =".$id ;
                         
                             $result = mysqli_query($conn,$sql);
+                            if (!$result){
+                                die("error");
+                            }
+                       
                             
                             $product=mysqli_fetch_assoc($result);
-
-                            $sql2 = "INSERT INTO `cart`(`id`, `name`, `price`) VALUES (".$product['id'].",".$product['name'].",".$product['price'].")";
-
+                            $sql2 = "INSERT INTO cart ('id', 'name', 'price') VALUES (".$product['id'].",'".$product['name']."',".$product['price'].")";
+                            
                             $result2 = mysqli_query($conn,$sql2);
+                        
+                            if(!$result2) {
+                                die("error1");
+                            }
                             $cproducts = mysqli_fetch_all($result2,MYSQLI_ASSOC);
+                       
                             foreach ($cproducts as $cproduct){
                             
                                 echo "<tr><td>". $cproduct['id']."</td><td>". $cproduct['name']."</td><td>". $cproduct['price']."</td></tr>";
