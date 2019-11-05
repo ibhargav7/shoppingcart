@@ -2,19 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Shopping cart</title>
+  <title>Shooping cart</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
-
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
     .navbar {
       margin-bottom: 50px;
       border-radius: 0;
     }
     
+    /* Remove the jumbotron's default bottom margin */ 
      .header {
       margin-bottom:0;
       background-color:#00e6e6;
@@ -23,6 +24,7 @@
 
     }
    
+    /* Add a gray background color and some padding to the footer */
   
   </style>
 </head>
@@ -89,6 +91,7 @@ $sql = 'SELECT * FROM shop';
 $result = mysqli_query($conn,$sql);
 $products = mysqli_fetch_all($result,MYSQLI_ASSOC);
 foreach ($products as $product){
+   
   echo "<div class='col-sm-4'><div class='panel panel-primary'>
   <div class='panel-heading'> ". $product['name']. " " . $product['type']."</div>
   <div class='panel-body'>

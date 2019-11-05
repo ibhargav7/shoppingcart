@@ -55,27 +55,31 @@
                        
                             
                             $product=mysqli_fetch_assoc($result);
-                            $sql2 = "INSERT INTO cart ('id', 'name', 'price') VALUES (".$product['id'].",'".$product['name']."',".$product['price'].")";
-                            
+                            $sql2 = "INSERT INTO `cart`(`id`, `name`, `price`) VALUES (".$product['id'].",\"".$product['name']."\",".$product['price'].")";
+                         
                             $result2 = mysqli_query($conn,$sql2);
-                        
-                            if(!$result2) {
-                                die("error1");
-                            }
-                            $cproducts = mysqli_fetch_all($result2,MYSQLI_ASSOC);
-                       
+                            $sql3 = 'SELECT * FROM cart';
+                            $result3 = mysqli_query($conn,$sql3);
+                            
+                            $cproducts = mysqli_fetch_all($result3,MYSQLI_ASSOC);
+                           
                             foreach ($cproducts as $cproduct){
                             
                                 echo "<tr><td>". $cproduct['id']."</td><td>". $cproduct['name']."</td><td>". $cproduct['price']."</td></tr>";
                             }
-
+                            $sql4 = 'SELECT sum(price) as total FROM cart';
+                            $result4 = mysqli_query($conn,$sql4);
+                            $row=mysqli_fetch_array($result4);
+                            $total=$row["total"];
+                        
+                            
                             $conn->close();
                         }
                         ?>
                     <tr>
                         <td><h4>Total Price<h4></td>
                         <td></td>
-                        <td></td>
+                        <td><?php echo"$total" ?></td>
                     </tr>
 
                 </tbody>
