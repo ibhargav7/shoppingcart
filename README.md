@@ -3,15 +3,15 @@ A web applicaton which creates a profile for the user and enables him to add ite
 <br>
 ### These are some Screenshots of the web application:<br>
 <br>
-![Login](screenshorts/login.png)
+![Login](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/login.png)
 <br>
-![Registration](screenshorts/registration.png)
+![Registration](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/registration.png)
 <br>
-![Store](screenshorts/store.png)
+![Store](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/store.png)
 <br>
-![cart](screenshorts/cart.png)
+![cart](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/cart.png)
 <br>
-![Sell products](screenshorts/sell.png)
+![Sell products](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/sell.png)
 <br>
-![Add item"](screenshorts/additem.png)
+![Add item"](https://github.com/ibhargav7/shoppingcart/blob/master/screenshorts/additem.png)
 
