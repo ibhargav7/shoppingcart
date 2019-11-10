@@ -3,15 +3,15 @@ A web applicaton which creates a profile for the user and enables him to add ite
 <br>
 ### These are some Screenshots of the web application:<br>
 <br>
-![alt text](screenshorts/login.png "Login")
+![Login](screenshorts/login.png)
 <br>
-![alt text](screenshorts/registration.png "Registration")
+![Registration](screenshorts/registration.png)
 <br>
-![alt text](screenshorts/store.png "Store")
+![Store](screenshorts/store.png)
 <br>
-![alt text](screenshorts/cart.png "cart")
+![cart](screenshorts/cart.png)
 <br>
-![alt text](screenshorts/sell.png "Sell products")
+![Sell products](screenshorts/sell.png)
 <br>
-![alt text](screenshorts/additem.png "Add item")
+![Add item"](screenshorts/additem.png)
 
