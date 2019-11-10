@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         $password=test($_POST["password"]);
     }
     
-    $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+    $conn = new mysqli("localhost", "root", "", "db");
     if ($conn->connect_error) {
         die("connection failed: ".$conn->connect_error);
     };
