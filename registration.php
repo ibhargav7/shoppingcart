@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 <title>sign in </title>
@@ -7,7 +10,7 @@
 
 </head>
 
-<body style="background-color:#007bffd1;padding-top:60px;padding-bottom:60px">
+<body style="background-image:url('shopping.jpg');padding-top:60px;padding-bottom:60px">
 
 
 <div class="card" style="width: 25rem;margin:auto">
@@ -35,11 +38,7 @@ method="POST">
 
           <input type='password' class="form-control" id ='password' name='password'required >
           </div>
-          <div class="form-group">
-          <label for="t6">Confirm password :</label>
           
-          <input type='password' class="form-control" id ='passwordc' name='passwordc' required>
-          </div>
           <div class="form-group">
           <label for="t3">Phone no. :</label>
           <input type='text' id ='phoneno' name='phoneno'class="form-control"  "required maxlength" = "15" required>
@@ -49,10 +48,10 @@ method="POST">
           <input type='text' id='country'class="form-control" name='country'  "required maxlength" = "40" required>
           </div>
   
-          <input type="submit" id="submit" value="submit"class="btn btn-primary" ><br><br>
+          <input type="submit" id="submit" name="submit" value="submit"class="btn btn-primary" ><br><br>
           <div>
           <p>Already a user? then:</p>
-          <a href="http://localhost/shoppingcart/login" >Login In</a>
+          <a href="login.php" >Login In</a>
           </div>
         </div>
           
@@ -61,54 +60,47 @@ method="POST">
   </div>
 </div>
 <?php 
+if (isset($_POST['submit'])) {
     $name=$email=$password=$phoneno=$country="";
+    function test($data)
+    {
+        $data=trim($data);
+        $data=stripslashes($data);
+        $data=htmlspecialchars($data);
+        return $data;
+    }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
         $name=test($_POST["name"]);
         $email=test($_POST["email"]);
         $password=test($_POST["password"]);
         $cpassword=test($_POST["passwordc"]);
         $phoneno=test($_POST["phoneno"]);
         $country=test($_POST["country"]);
-        
     }
-    function test($data){
-        $data=trim($data);
-        $data=stripslashes($data);
-        $data=htmlspecialchars($data);
-        return $data;
-
-    }
-
-        $servername = "localhost";
-        $username = "bhargav";
-        $password = "iBhargav@1";
-
-        $conn = new mysqli($servername,$username,$password,"bhargav");
-        if ($conn->connect_error){
-            die("connection failed: ".$conn->connect_error);
-        };
-        $sql1 ="SELECT  `email` FROM `login` WHERE email='".$email."'";
-        echo "$sql1";
-        $result1 = mysqli_query($conn,$sql1);
-        if (mysqli_num_rows($result) == 0) {
-            $sql="INSERT INTO `login`(`name`, `email`, `password`, `phoneno`) VALUES ('".$name."','".$email."','".$password."','".$phoneno."')";
-            echo "$sql";
-            $result = mysqli_query($conn, $sql);
-            if (!$result) {
-                die("error");
-            }
-            
-            
-            
-        }
-        
-        else{
-            echo "email is already registered!";
-        }
-        
-       
     
+
+    $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+    if ($conn->connect_error) {
+        die("connection failed: ".$conn->connect_error);
+    };
+    $sql1 ="SELECT  `email` FROM `login` WHERE email='".$email."'";
+    echo "$sql1";
+    $result1 = mysqli_query($conn, $sql1);
+    $num=0;
+    while ($row = mysqli_fetch_assoc($result1)) {
+        $num++;
+    }
+    if ($num == 0) {
+        $sql="INSERT INTO `login`(`name`, `email`, `password`, `phoneno`) VALUES ('".$name."','".$email."','".$password."','".$phoneno."')";
+        echo "$sql";
+        $result = mysqli_query($conn, $sql);
+        if (!$result) {
+            die("error");
+        }
+    } else {
+        echo "email is already registered!";
+    }
+}
     
    
 ?>
