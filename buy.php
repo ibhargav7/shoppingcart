@@ -71,7 +71,7 @@ session_start();
 
 
 <?php
-$conn = new mysqli("localhost","bhargav","iBhargav@1","bhargav");
+$conn = new mysqli("localhost","root","","db");
 if ($conn->connect_error){
     die("connection failed: ".$conn->connect_error);
 };
@@ -82,7 +82,7 @@ function cart() {
   global $email;
   $id=$_GET["id"];
  
-  $conn = new mysqli("localhost","bhargav","iBhargav@1","bhargav");
+  $conn = new mysqli("localhost","root","","db");
   if ($conn->connect_error) {
       die("connection failed: ".$conn->connect_error);
   }
