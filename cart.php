@@ -51,7 +51,7 @@ session_start();
                         <?php
                  
 
-                        $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+                        $conn = new mysqli("localhost", "root", "", "");
                         if ($conn->connect_error){
                             die("connection failed: ".$conn->connect_error);
                         };
@@ -82,7 +82,7 @@ session_start();
                         if (isset($_POST['id'])) {
                             echo $_POST['id'];
                             
-                            $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+                            $conn = new mysqli("localhost", "root", "", "db");
                             if ($conn->connect_error){
                                 die("connection failed: ".$conn->connect_error);
                             $id=$_GET['id'];
