@@ -76,7 +76,7 @@ $email=$_SESSION['email'];
         }
         
 
-        $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+        $conn = new mysqli("localhost", "bhargav", "", "bhargav");
         if ($conn->connect_error) {
             die("connection failed: ".$conn->connect_error);
         };
