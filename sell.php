@@ -70,7 +70,7 @@ session_start();
 
 <?php
 function  Delete(){
-    $conn = new mysqli("localhost", "bhargav", "iBhargav@1", "bhargav");
+    $conn = new mysqli("localhost", "root", "", "db");
     if ($conn->connect_error) {
         die("connection failed: ".$conn->connect_error);
         $id=$_GET['id'];
